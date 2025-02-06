@@ -48,7 +48,7 @@ const MusicPlayer: React.FC = () => {
         </>
       ) : (
         <>
-          <h2 className="text-xl font-semibold text-center">OIAOAIAA</h2>
+          <h2 className="text-xl font-semibold text-center">OIAAOIAA</h2>
           <p className="text-gray-600 text-sm text-center">Ethel the cat</p>
         </>
       )}

@@ -7,6 +7,7 @@ import catto from "../assets/catto.mp4";
 const MusicPlayer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [currentVideo, setCurrentVideo] = useState(sigma); // Track the current video
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -19,28 +20,44 @@ const MusicPlayer: React.FC = () => {
     }
   };
 
+  const switchToPrevious = () => {
+    // Switch to the previous video (if you have more videos, you can expand this logic)
+    setCurrentVideo(sigma); // You can add more videos and logic to cycle through them
+  };
+
+  const switchToNext = () => {
+    // Switch to the next video
+    setCurrentVideo(catto); // Change to the next video
+  };
+
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md w-80 border border-gray-100">
+    <div className="bg-white p-8 rounded-lg shadow-md w-80 border border-gray-100 transition-all duration-300">
       <video
         ref={videoRef}
-        src={sigma}
+        src={currentVideo} // Dynamically change video source based on state
         className="w-full mb-4 rounded-lg shadow-lg shadow-teal-50 border"
         loop
         autoPlay
       />
-      {/* <video
-        ref={videoRef}
-        src={catto}
-        className="w-full mb-4 rounded-lg shadow-lg shadow-teal-50 border"
-        loop
-        autoPlay
-      /> */}
-      <h2 className="text-xl font-semibold text-center">
-        GIGA CHAD SIGMA BALLS
-      </h2>
-      <p className="text-gray-600 text-sm text-center">Justin Miggers</p>
+      {currentVideo === sigma ? (
+        <>
+          <h2 className="text-xl font-semibold text-center">
+            GIGA CHAD SIGMA BALLS
+          </h2>
+          <p className="text-gray-600 text-sm text-center">Justin Miggers</p>
+        </>
+      ) : (
+        <>
+          <h2 className="text-xl font-semibold text-center">OIAOAIAA</h2>
+          <p className="text-gray-600 text-sm text-center">Ethel the cat</p>
+        </>
+      )}
       <div className="mt-6 flex justify-center items-center">
-        <button className="p-3 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none">
+        {/* Previous Button */}
+        <button
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none"
+          onClick={switchToPrevious}
+        >
           <svg
             width="64px"
             height="64px"
@@ -57,8 +74,9 @@ const MusicPlayer: React.FC = () => {
           </svg>
         </button>
 
+        {/* Play/Pause Button */}
         <button
-          className="p-4 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none mx-4 flex items-center justify-center"
+          className="w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none mx-4 flex items-center justify-center"
           onClick={togglePlayPause}
         >
           {isPlaying ? (
@@ -96,7 +114,11 @@ const MusicPlayer: React.FC = () => {
           )}
         </button>
 
-        <button className="p-3 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none">
+        {/* Next Button */}
+        <button
+          className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none flex items-center justify-center"
+          onClick={switchToNext}
+        >
           <svg
             width="64px"
             height="64px"
@@ -113,7 +135,7 @@ const MusicPlayer: React.FC = () => {
         </button>
       </div>
       <div className="mt-6 bg-gray-200 h-2 rounded-full">
-        <div className="bg-teal-500 h-2 rounded-full w-[95%]"></div>
+        <div className="bg-gray-400 h-2 rounded-full w-[95%]"></div>
       </div>
       <div className="flex justify-between mt-2 text-sm text-gray-600">
         <span>1:55</span>

@@ -56,22 +56,19 @@ export default function Page() {
   };
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
+    <div className="flex h-screen flex-col items-center justify-center bg-slate-100">
       {yesPressed ? (
         <>
           {showConfetti && (
             <Confetti width={windowSize.width} height={windowSize.height} />
           )}
           <div className="flex flex-col items-center justify-center gap-5">
-            <div className="text-4xl font-bold text-center">
-              Ay alangan naman og di ka mosugot? 🤨
-            </div>
             <MusicPlayer />
           </div>
         </>
       ) : (
         <div className="flex flex-col items-center justify-center gap-5">
-          <h1 className="text-4xl">
+          <h1 className="text-3xl font-bold text-center">
             Nassy, my habibi. Will you be my valentine?🌹
           </h1>
           <img className="h-[320px] rounded-lg" src={catImage} alt="El Gato" />
